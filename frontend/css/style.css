@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F9F9F9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D4D4D4;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A3A3A3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Button transitions */
+button {
+    transition: all 0.3s ease;
+}
+
+button:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+button:not(:disabled):active {
+    transform: translateY(0);
+}
+
+/* Waveform container */
+#waveformContainer {
+    position: relative;
+}
+
+#waveform {
+    transition: box-shadow 0.5s ease;
+}
+
+/* Transcript bubble styles */
+.transcript-bubble {
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.transcript-bubble.ai {
+    background: #F5F5F5;
+    border-left: 3px solid #007AFF;
+    margin-right: auto;
+}
+
+.transcript-bubble.candidate {
+    background: #FFFFFF;
+    border-right: 3px solid #FF3B30;
+    margin-left: auto;
+    text-align: right;
+}
+
+.transcript-bubble .role {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.transcript-bubble.ai .role {
+    color: #007AFF;
+}
+
+.transcript-bubble.candidate .role {
+    color: #FF3B30;
+}
+
+.transcript-bubble .content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #0A0A0A;
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Interview System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#F9F9F9] font-['IBM_Plex_Sans',_sans-serif]">
+
+    <div class="min-h-screen grid grid-cols-1 md:grid-cols-2">
+        <!-- Left Panel - Hero Section -->
+        <div class="hidden md:flex relative bg-cover bg-center" style="background-image: url('https://static.prod-images.emergentagent.com/jobs/44c57612-9321-49ff-9e05-d9fc6d427763/images/09ec9b26c68b3bc111cb305e1c0c4172a1e980e38292100162bc6e07931cc25d.png');">
+            <div class="absolute inset-0 bg-black/10"></div>
+            <div class="relative z-10 flex flex-col justify-center px-12 lg:px-24 text-white">
+                <img src="https://images.pexels.com/photos/15863044/pexels-photo-15863044.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                     alt="Logo" 
+                     class="w-12 h-12 rounded-lg object-cover mb-8">
+                <h1 class="font-['Outfit',_sans-serif] text-4xl sm:text-5xl lg:text-6xl tracking-tight font-light mb-6">
+                    AI Voice Interviewer
+                </h1>
+                <p class="text-lg leading-relaxed text-white/90 max-w-md">
+                    Experience the future of hiring. Our AI conducts natural, voice-based interviews, evaluating candidates in real-time with professional precision.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Panel - Form Section -->
+        <div class="flex items-center justify-center px-6 py-12 md:px-12">
+            <div class="w-full max-w-md">
+                <div class="bg-white border border-[#E5E5E5] rounded-lg p-8 md:p-12 shadow-sm">
+                    <h2 class="font-['Outfit',_sans-serif] text-2xl sm:text-3xl font-medium text-[#0A0A0A] mb-2">
+                        Start Your Interview
+                    </h2>
+                    <p class="text-base text-[#525252] mb-8">
+                        Fill in your details to begin the voice interview process.
+                    </p>
+
+                    <form id="interviewForm" class="space-y-6">
+                        <!-- Candidate Name -->
+                        <div>
+                            <label for="candidateName" class="block text-xs uppercase tracking-[0.2em] font-semibold text-[#A3A3A3] mb-2">
+                                Your Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="candidateName" 
+                                name="candidate_name"
+                                data-testid="candidate-name-input"
+                                required
+                                class="w-full border border-[#E5E5E5] rounded-md p-3 text-[#0A0A0A] focus:ring-2 focus:ring-[#0A0A0A] focus:outline-none transition-all"
+                                placeholder="John Doe"
+                            >
+                        </div>
+
+                        <!-- Resume Upload -->
+                        <div>
+                            <label class="block text-xs uppercase tracking-[0.2em] font-semibold text-[#A3A3A3] mb-2">
+                                Upload Resume
+                            </label>
+                            <div 
+                                id="resumeDropzone" 
+                                data-testid="resume-upload-dropzone"
+                                class="border-2 border-dashed border-[#D4D4D4] rounded-md p-12 text-center bg-[#F9F9F9] hover:bg-[#F0F0F0] cursor-pointer transition-colors flex flex-col items-center justify-center gap-4"
+                            >
+                                <i class="ph ph-upload text-4xl text-[#A3A3A3]"></i>
+                                <p class="text-sm text-[#525252]">
+                                    <span class="font-semibold">Click to upload</span> or drag and drop
+                                </p>
+                                <p class="text-xs text-[#A3A3A3]">PDF or TXT (Max 10MB)</p>
+                                <input 
+                                    type="file" 
+                                    id="resumeFile" 
+                                    name="resume"
+                                    accept=".pdf,.txt"
+                                    required
+                                    class="hidden"
+                                >
+                            </div>
+                            <p id="fileName" class="mt-2 text-sm text-[#525252] hidden"></p>
+                        </div>
+
+                        <!-- Job Description -->
+                        <div>
+                            <label for="jobDescription" class="block text-xs uppercase tracking-[0.2em] font-semibold text-[#A3A3A3] mb-2">
+                                Job Description
+                            </label>
+                            <textarea 
+                                id="jobDescription" 
+                                name="job_description"
+                                data-testid="job-description-input"
+                                required
+                                rows="4"
+                                class="w-full border border-[#E5E5E5] rounded-md p-3 text-[#0A0A0A] focus:ring-2 focus:ring-[#0A0A0A] focus:outline-none transition-all resize-none"
+                                placeholder="Describe the job role, required skills, and responsibilities..."
+                            ></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button 
+                            type="submit" 
+                            id="startButton"
+                            data-testid="start-interview-button"
+                            class="w-full bg-[#0A0A0A] text-white py-4 px-8 font-medium rounded-md hover:bg-[#262626] hover:shadow-md hover:-translate-y-[1px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            Start Voice Interview
+                        </button>
+                    </form>
+
+                    <!-- Loading State -->
+                    <div id="loadingState" class="hidden mt-6 text-center">
+                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-[#E5E5E5] border-t-[#0A0A0A]"></div>
+                        <p class="mt-3 text-sm text-[#525252]">Initializing interview...</p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
+                        <p class="text-sm text-red-600"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# ── Web framework ──────────────────────────────────────────────────────────────
+Flask==3.0.2
+Flask-CORS==4.0.0
+Flask-SocketIO==5.3.6
+python-socketio==5.11.1
+python-engineio==4.9.1
+gevent==24.2.1
+gevent-websocket==0.10.1
+
+# ── Database ───────────────────────────────────────────────────────────────────
+pymongo==4.5.0
+
+# ── Config ─────────────────────────────────────────────────────────────────────
+python-dotenv==1.0.1
+
+# ── Document parsing ───────────────────────────────────────────────────────────
+pdfplumber==0.11.0
+
+# ── RAG / Embeddings ───────────────────────────────────────────────────────────
+langchain==0.1.10
+langchain-community==0.0.25
+faiss-cpu==1.8.0
+sentence-transformers==2.5.1
+
+# ── Groq API — covers STT (Whisper), TTS (Orpheus), and LLM ───────────────────
+# SINGLE SDK for all three modalities. One key, one package.
+groq>=0.9.0
+
+# REMOVED: openai-whisper  ← replaced by Groq STT (whisper-large-v3-turbo)
+# REMOVED: edge-tts        ← replaced by Groq TTS (canopylabs/orpheus-v1-english)
+# REMOVED: pyttsx3         ← replaced by Groq TTS
+# REMOVED: torch/torchaudio← not needed without local Whisper
+
+# ── HTTP client ────────────────────────────────────────────────────────────────
+requests==2.31.0
+
+# ── Misc ───────────────────────────────────────────────────────────────────────
+numpy==1.26.4
+werkzeug>=3.0.0
